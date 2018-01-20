@@ -46,20 +46,18 @@ public class SignTask {
                         Version version = restTemplate.getForObject(SignConstant.VERSION_URL, Version.class, signService.getVersion().get(i));
                         log.info("【版本信息】：id={}，" + version, list.get(i).get(SignConstant.AUTO_SYSTEM_ID));
 
-                        if(version != null){
-                            //获取最新的版本信息
-                            String androidVersion = version.getAndroidVersion();
-                            String versionCode = version.getVersionCode();
-                            Long requestParamsId = (Long)list.get(i).get(SignConstant.AUTO_SYSTEM_ID);
-                            RequestParams requestParams = signService.findOne(requestParamsId);
+                        //获取最新的版本信息
+                        String androidVersion = version.getAndroidVersion();
+                        String versionCode = version.getVersionCode();
+                        Long requestParamsId = (Long)list.get(i).get(SignConstant.AUTO_SYSTEM_ID);
+                        RequestParams requestParams = signService.findOne(requestParamsId);
 
-                            //只有版本不一致的时候才更新
-                            if(!requestParams.getVersion().equals(androidVersion) || !requestParams.getVersionCode().equals(versionCode)){
-                                signService.updateVersionAndVersionCode(androidVersion,versionCode,requestParamsId);
-                                log.info("【版本信息】：更新成功，id={}，" + version,list.get(i).get(SignConstant.AUTO_SYSTEM_ID));
-                            }
-
+                        //只有版本不一致的时候才更新
+                        if(!requestParams.getVersion().equals(androidVersion) || !requestParams.getVersionCode().equals(versionCode)){
+                            signService.updateVersionAndVersionCode(androidVersion,versionCode,requestParamsId);
+                            log.info("【版本信息】：更新成功，id={}，" + version,list.get(i).get(SignConstant.AUTO_SYSTEM_ID));
                         }
+
                     }
 
 

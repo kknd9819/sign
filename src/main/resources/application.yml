@@ -15,9 +15,12 @@ spring:
     username: root
     password: Zheng1234
 
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html; charset=utf-8
+
 logging:
   file: sign.log
-
-
-
-
