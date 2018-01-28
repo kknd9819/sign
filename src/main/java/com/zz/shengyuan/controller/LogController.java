@@ -35,7 +35,7 @@ public class LogController {
 
     private String getCurrentLog() {
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("./sign.log")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("./logs/sign.log")))) {
             String s;
             while ((s = br.readLine()) != null) {
                 sb.append(s).append("\n");

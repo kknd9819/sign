@@ -2,7 +2,7 @@ package com.zz.shengyuan.constant;
 
 public class SignConstant {
 
-    public static final String SERVER_URL = "http://yun.shengyuan.cn:7360";
+    public static final String SERVER_URL = "http://127.0.0.1:7360";
 
     public static final String PAGE_URL =  SERVER_URL + "/app/member/signIn_page.jhtml?token={token}&_version={_version}" +
             "&_channel={_channel}&_network={_network}&_regid={_regid}&_timestamp={_timestamp}&autoSystemId={autoSystemId}&_signdata={_signdata}";
