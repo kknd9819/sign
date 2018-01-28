@@ -29,13 +29,12 @@ public class SignTask {
 
     @Resource
     private SignService signService;
-    @Resource
-    private RestTemplate restTemplate;
 
     //每隔 1分钟 执行 0 */1 * * * ?
     @Scheduled(cron = "0 1 6,21 * * ?")
     public void getSignPage(){
         try{
+            RestTemplate restTemplate = new RestTemplate();
             List<Map<String, Object>> list = signService.getRequestParams();
             if(list != null && list.size() > 0 ){
                 for (int i=0;i<list.size();i++) {
@@ -74,6 +73,7 @@ public class SignTask {
     @Scheduled(cron = "0 3 6,21 * * ?")
     public void postSign(){
         try{
+            RestTemplate restTemplate = new RestTemplate();
             List<MultiValueMap<String,Object>> list = signService.postRequestParams();
             List<MultiValueMap<String,Object>> login_list = signService.paymentLoginParams();
             if(list != null && list.size() > 0 ){

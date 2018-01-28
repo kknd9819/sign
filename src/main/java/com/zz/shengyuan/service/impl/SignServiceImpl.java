@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -144,7 +143,7 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public void updateTokenAndNickName(Long requestParamsId,String token,String nickName,String portraitPath) {
-    	Optional<RequestParams> requestParams = requestParamsRepository.findById(requestParamsId);
+    	RequestParams requestParams = requestParamsRepository.findOne(requestParamsId);
     	RequestParams rp = new RequestParams();
     	BeanUtils.copyProperties(requestParams, rp);
     	rp.setModifyDate(new Date());
@@ -161,8 +160,7 @@ public class SignServiceImpl implements SignService {
 
     @Override
     public RequestParams findOne(Long requestParamsId) {
-    	Optional<RequestParams> findById = requestParamsRepository.findById(requestParamsId);
-        return findById.orElse(null);
+    	return requestParamsRepository.findOne(requestParamsId);
     }
 
     @Override

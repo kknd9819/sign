@@ -17,10 +17,14 @@ spring:
 
   thymeleaf:
     cache: false
-    mode: HTML
+    mode: HTML5
     encoding: UTF-8
-    servlet:
-      content-type: text/html; charset=utf-8
+    content-type: text/html; charset=utf-8
+
+  http:
+    multipart:
+      max-file-size: 64096MB
+      max-request-size: 64096MB
 
 logging:
   file: sign.log

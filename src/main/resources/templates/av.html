@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/bootstrap_button.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/html5shiv.min.js"></script>
+<script type="text/javascript" src="js/respond.min.js"></script>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div th:if="${message}">
+                <!--/*@thymesVar id="message" type="java.lang.String"*/-->
+                <h2 th:text="${message}"></h2>
+            </div>
+
+            <div >
+                <form method="POST" enctype="multipart/form-data" th:action="@{/av}">
+                    <table>
+                        <tr><th></th><td><input type="file" name="file" multiple="multiple"/></td></tr>
+                        <tr><th></th><td><input type="submit" value="上传" /></td></tr>
+                    </table>
+                </form>
+            </div>
+
+            <div>
+                <ul>
+                    <!--/*@thymesVar id="files" type="java.util.stream.Stream"*/-->
+                    <li th:each="file : ${files}">
+                        <a th:href="${file}" th:text="${file}" ></a><button>在线观看</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="video_div" style="display: none;">
+                <ul>
+                    <li>
+                        <video src="" controls="controls"></video>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $("body").off().on("click","button",function(){
+            var src = $(this).prev().text();
+            $("video").attr("src",src);
+            $("#video_div").show();
+        });
+    });
+</script>
+</body>
+</html>
