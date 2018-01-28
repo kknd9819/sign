@@ -27,4 +27,4 @@ spring:
       max-request-size: 64096MB
 
 logging:
-  file: sign.log
+  file: ./logs/sign.log
