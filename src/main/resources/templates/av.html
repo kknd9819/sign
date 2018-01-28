@@ -21,10 +21,10 @@
             </div>
 
             <div >
-                <form method="POST" enctype="multipart/form-data" th:action="@{/av}">
+                <form method="POST" enctype="multipart/form-data" th:action="@{/av}" onsubmit="return sub()">
                     <table>
-                        <tr><th></th><td><input type="file" name="file" multiple="multiple"/></td></tr>
-                        <tr><th></th><td><input type="submit" value="上传" /></td></tr>
+                        <tr><th></th><td><input id="file" type="file" name="file" multiple="multiple"/></td></tr>
+                        <tr><th></th><td><input type="submit" value="上传"/></td></tr>
                     </table>
                 </form>
             </div>
@@ -49,12 +49,25 @@
     </div>
 </div>
 <script type="text/javascript">
+
+    function sub(){
+        var files = $("#file").val();
+        if(files.length === 0 || files === ""){
+            alert("请选择一个或多个要上传文件！");
+            return false;
+
+        }
+        return true;
+    }
+
+
     $(function(){
         $("body").off().on("click","button",function(){
             var src = $(this).prev().text();
             $("video").attr("src",src);
             $("#video_div").show();
         });
+
     });
 </script>
 </body>

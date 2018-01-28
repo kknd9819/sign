@@ -59,10 +59,6 @@ public class FileUploadController {
             RedirectAttributes redirectAttributes) {
     	
     	List<MultipartFile> files =((MultipartHttpServletRequest)request).getFiles("file");
-    	if(files.isEmpty()){
-            redirectAttributes.addFlashAttribute("message","文件不能为空！");
-    	    return "redirect:/av";
-        }
         for (MultipartFile file : files) {
             storageService.store(file);
             redirectAttributes.addFlashAttribute("message",
